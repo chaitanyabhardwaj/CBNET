@@ -1,0 +1,7 @@
+* { box-sizing: border-box; padding: 0px; margin: 0px; font-family: monospace; }
+html,body { height: 100%; }
+header { padding: 30px; margin-bottom: 50px; text-align: center; background-color: #7af; color: #ddd; -webkit-text-shadow: 0px 1px 3px #333; -moz-text-shadow: 0px 1px 3px #333; -ms-text-shadow: 0px 1px 3px #333; -o-text-shadow: 0px 1px 3px #333; text-shadow: 0px 1px 3px #333; -webkit-box-shadow: 0px 1px 3px #000; -moz-box-shadow: 0px 1px 3px #000; -ms-box-shadow: 0px 1px 3px #000; -o-box-shadow: 0px 1px 3px #000; box-shadow: 0px 1px 3px #000; }
+#outer-container { width: 80%; margin: auto; background-color: #ddd; padding: 20px; margin-bottom: 50px; }
+#message-list { list-style-type: none; display: block; padding: 10px; }
+.message-card { background-color: #7af; -webkit-box-shadow: 0px 1px 3px #000; -moz-box-shadow: 0px 1px 3px #000; -ms-box-shadow: 0px 1px 3px #000; -o-box-shadow: 0px 1px 3px #000; box-shadow: 0px 1px 3px #000; padding: 20px; border-radius: 10px; cursor: pointer; width: 80%; display: block; margin: auto; margin-top: 10px; margin-bottom: 10px; height: auto; }
+footer { background-color: #000; padding: 30px; color: #fff; font-weight: bolder; text-align: center; }
