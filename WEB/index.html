@@ -6,11 +6,15 @@
 			if(validateInput())
 				$('#login-form').submit();
 		});
+
 		var heightFactor = $(window).height()/4;
 		$('body').css('margin-top', heightFactor);
+
 		function validateInput() {
 			var name = $('#username').val();
-			var len = name.length();
+			var passwd = $('#passwd').val();
+			var plen = passwd.length;
+			var len = name.length;
 			if(len > 3) {
 				var i;
 				for(i = 0; i < len; i++) {
@@ -21,18 +25,43 @@
 					printError("The username must contain at least one letter.");
 					return false;
 				}
+			}
+			else {
+				printError("Username must contain at least 4 characters.");
+				return false;
+			}
+			if(plen > 5) {
+				var i, flagC = 0, flagN = 0;
+				for(i = 0; i < plen; i++) {
+					if(isNaN(passwd.charAt(i)))
+						flagC = 1;
+					else
+						flagN = 1;
+					if(flagN === 1 && flagC === 1)
+						break;
+				}
+				if(i >= plen) {
+					printError("Password must contain at least one number and at least one character.");
+					return false;
+				}
 				return true;
 			}
-			return false;
+			else {
+				printError("Password must contain at least 6 characters.");
+				return false;
+			}
+			
 		}
+
 		function printError(msg) {
 			$('#error-container').html(msg);
 			$('#error-container').fadeIn('slow');
 			var timer = setInterval(function() {
 				$('#error-container').fadeOut('slow');
 				clearInterval(timer);
-			},10000);
+			},5000);
 		}
+
 	});
 </script>
 </head><body>
@@ -40,12 +69,12 @@
 	<h1>CBNET</h1>
 </header>
 <main>
-	<div class="contaienr" id="error-container"></div>
+	<div class="container" id="error-container"></div>
 	<div class="container" id="outer-container">
 		<div class="container" id="form-container">
 			<form method="POST" action="Registered" id="login-form">
 				<input type="text" name="username" id="username" placeholder="USERNAME">
-				<input type="password" name="passwd" id="passwd" placeholder="PASSWORD" min="5">
+				<input type="password" name="passwd" id="passwd" placeholder="PASSWORD">
 				<button type="button" id="submit-button">START</button>
 			</form>
 		</div>
