@@ -19,8 +19,8 @@
 		$('#message-card').click(function() {
 			$('#call-service').attr('action','MyMessages');
 			$('#call-service').submit();
-		})
-	})
+		});
+	});
 </script>
 </head><body>
 	<header>
