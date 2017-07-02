@@ -116,11 +116,11 @@ public class FileManager {
         if(!file.exists())
             return null;
         BufferedReader reader = new BufferedReader(new FileReader(file));
-        String r = "";
+        String r,msg = "";
         while((r = reader.readLine())!= null)
-            r += "\n";
-        r = r.trim();
-        if(r.equals("")) {
+            msg += r;
+        msg = msg.trim();
+        if(msg.equals("")) {
             log("Error Type : RARE. File empty. Filename : " + file.getName() + ". File directory : " 
                     + file.getAbsolutePath());
             return null;
@@ -181,13 +181,11 @@ public class FileManager {
         File file = new File(folder,"log.txt");
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         str = df.format(new Date()) + " - " + str;
-        if(!file.exists()) {
-            try{
-                write(file,str);
-            }
-            catch(IOException ex) {
-                ex.printStackTrace();
-            }
+        try{
+            write(file,str);
+        }
+        catch(IOException ex) {
+            ex.printStackTrace();
         }
     }
     
