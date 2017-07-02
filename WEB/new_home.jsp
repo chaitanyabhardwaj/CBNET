@@ -25,7 +25,7 @@
 <!-- NEW USER GUIDING SCRIPT -->
 <script>
 	$(document).ready(function() {
-		var helpDialogCount = $('.help-dialog').length();
+		var helpDialogCount = $('.help-dialog').length;
 	    displayHelpDialog(helpDialogCount);
 
 		function displayHelpDialog(n) {
@@ -55,7 +55,12 @@
 			<div id="message-card" class="card">
 				<div class="counter">
 					<span class="counter-text">
-						<% String n = request.getAttribute("message-count") + ""; if(n == null) n = 0; out.print(n); %>
+						<% 
+							Object o; int n; 
+							if((o = request.getAttribute("message-count")) == null) n = 0;
+							else n = (int) o;
+							out.print(n); 
+						%>
 					</span>
 					<div class="help-dialog" id="help-dialog-2">This shows the number of messages in your inbox</div>
 				</div>

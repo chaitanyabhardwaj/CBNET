@@ -30,7 +30,12 @@
 		<div class="container" id="outer-container">
 			<div id="message-card" class="card">
 				<span class="counter-text">
-					<% String n = request.getAttribute("message-count") + ""; if(n == null) n = 0; out.print(n); %>
+					<% 
+						Object o; int n; 
+						if((o = request.getAttribute("message-count")) == null) n = 0;
+						else n = (int) o;
+						out.print(n); 
+					%>
 				</span>
 				<h3 class="card-title">Messages</h3>
 			</div>
