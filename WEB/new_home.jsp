@@ -34,12 +34,12 @@
 			timer = setInterval(function() {
 				if(i <= n) {
 					$("#help-dialog-"+i).fadeIn('fast');
-					if(i > 1)
-						$("#help-dialog-"+(i-1)).fadeOut('fast');
 				}
 				else {
 					clearInterval(timer);
 				}
+				if(i > 1)
+					$("#help-dialog-"+(i-1)).fadeOut('fast');
 				i++;
 			},7000);
 		}
@@ -52,6 +52,9 @@
 	<main>
 		<div class="help-dialog" id="help-dialog-1">
 			Hey there! Welcome to CBNET, a WEB APP to message, share and control other systems over a network! Let me guide you.
+		</div>
+		<div class="help-dialog" id="help-dialog-4">
+			Enjoy using CBNET. Feel at home! So if you have any problem, don't contact me, daddy's pretty busy <img src="resources/emoji_eye_rolling.png" alt=";-p" id="emoji_eye_rolling">
 		</div>
 		<div class="container" id="outer-container">
 			<div id="message-card" class="card">
