@@ -170,7 +170,7 @@ public class FileManager {
     }
     
     public boolean validatePassword(String userID, String passwd)throws IOException {
-        File file = new File(PATH + "user/" + userID +".txt");
+        File file = new File(PATH + "users/" + userID +".txt");
         return (passwd.equals(read(file)));
     }
     

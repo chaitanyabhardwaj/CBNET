@@ -5,7 +5,7 @@
 		$('.message-card').click(function() {
 			var senderID = $(this).html();
 			senderID = userID.trim();
-			var receiverID = '<%= request.getAtrribute("username") %>';
+			var receiverID = '<%= request.getAttribute("username") %>';
 			receiverID = receiverID.trim();
 			$('#senderID').val(senderID)
 			$('#receiverID').val(receiverID);
@@ -21,7 +21,7 @@
 		<div class="container" id="outer-container">
 			<ul id="message-list">
 				<%
-					String userList[] = request.getAtrribute("new_messages");
+					String userList[] = request.getAttribute("new_messages");
 					for(int i = 0; i < userList.length; i++)
 						out.println("<li class='message-card'>" + userList[i] + "</li>");
 				%>

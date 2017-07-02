@@ -54,7 +54,9 @@
 		<div class="container" id="outer-container">
 			<div id="message-card" class="card">
 				<div class="counter">
-					<span class="counter-text"><%= request.getAttribute("message-count") %></span>
+					<span class="counter-text">
+						<% String n = request.getAttribute("message-count") + ""; if(n == null) n = 0; out.print(n); %>
+					</span>
 					<div class="help-dialog" id="help-dialog-2">This shows the number of messages in your inbox</div>
 				</div>
 				<h3 class="card-title">Messages</h3>
