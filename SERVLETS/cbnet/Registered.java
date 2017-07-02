@@ -14,11 +14,15 @@ public class Registered extends HttpServlet {
         FileManager manager = new FileManager();
         RequestDispatcher view;
         req.setAttribute("username", username);
+        String nom[] = manager.listUnreadMessages(username);
         if(manager.createUser(username,passwd) == FileManager.USER_CREATED)
             view = req.getRequestDispatcher("new_home.jsp");
         else {
             if(manager.validatePassword(username,passwd)) {
-                req.setAttribute("message-count", manager.listUnreadMessages(username).length);
+                if(nom != null)
+                    req.setAttribute("message-count", nom.length);
+                else
+                    req.setAttribute("message-count", 0);
                 view = req.getRequestDispatcher("home.jsp");
             }
             else {

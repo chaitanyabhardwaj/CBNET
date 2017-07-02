@@ -30,12 +30,7 @@
 		<div class="container" id="outer-container">
 			<div id="message-card" class="card">
 				<span class="counter-text">
-					<% 
-						Object o; int n; 
-						if((o = request.getAttribute("message-count")) == null) n = 0;
-						else n = (int) o;
-						out.print(n); 
-					%>
+					<%= request.getAttribute("message-count") %>
 				</span>
 				<h3 class="card-title">Messages</h3>
 			</div>

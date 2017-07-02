@@ -29,17 +29,19 @@
 	    displayHelpDialog(helpDialogCount);
 
 		function displayHelpDialog(n) {
-			var i = 0, timer;
+			var i = 2, timer;
+			$('#help-dialog-1').fadeIn('fast');
 			timer = setInterval(function() {
-				if(i < n) {
-					$("#help-dialog-"+i).fadeIn(fast);
-					if(i > 0)
-						$("#help-dialog-"+(i-1)).fadeOut(fast);
+				if(i <= n) {
+					$("#help-dialog-"+i).fadeIn('fast');
+					if(i > 1)
+						$("#help-dialog-"+(i-1)).fadeOut('fast');
 				}
 				else {
 					clearInterval(timer);
 				}
-			},5000);
+				i++;
+			},7000);
 		}
 	});
 </script>
@@ -49,7 +51,7 @@
 	</header>
 	<main>
 		<div class="help-dialog" id="help-dialog-1">
-			Hey there! Welcome to CBNET, a WEB APP to message, share and control other systems over a network!
+			Hey there! Welcome to CBNET, a WEB APP to message, share and control other systems over a network! Let me guide you.
 		</div>
 		<div class="container" id="outer-container">
 			<div id="message-card" class="card">
@@ -66,7 +68,7 @@
 				</div>
 				<h3 class="card-title">Messages</h3>
 				<div class="help-dialog" id="help-dialog-3">
-					This is a card. You can access different functions by clicking on your cards.
+					These are cards. You can access different functions by clicking on your cards.
 				</div>
 			</div>
 		</div>

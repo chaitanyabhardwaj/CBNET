@@ -125,7 +125,7 @@ public class FileManager {
                     + file.getAbsolutePath());
             return null;
         }
-        return r;
+        return msg;
     }
     
     public String read(String path)throws IOException {
