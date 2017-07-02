@@ -1,5 +1,5 @@
 <%@ page import = "java.util.Arrays" %>
-<!DOCTYPE html><html lang="en-US" dir="ltr"><head><meta charset="utf-8" /><title>CBNET Messages</title><meta name="description" content="CBNET is a web-app made, so that machines and boxes can come to live. CBMUSIC is also a production of CBNET. Come along and do things without moving an inch. Be Lazy, be awesome!"/><meta name="author" content="Chaitanya Bhardwaj" /><base href="messages.jsp" target="_blank" /><meta name="referrer" content="origin-when-cross-origin" /><link rel="icon" type="image/x-icon" href="resources/favicon.png" /><link rel="stylesheet" type="text/css" media="screen and (max-width: 700px)" href="stylesheets/messagessmall.css" /><link rel="stylesheet" type="text/css" media="screen and (min-width:701px)" href="stylesheets/messageslarge.css"><link rel="stylesheet" type="text/css" href="stylesheetsbasicstyle.css"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+<!DOCTYPE html><html lang="en-US" dir="ltr"><head><meta charset="utf-8" /><title>CBNET Messages</title><meta name="description" content="CBNET is a web-app made, so that machines and boxes can come to live. CBMUSIC is also a production of CBNET. Come along and do things without moving an inch. Be Lazy, be awesome!"/><meta name="author" content="Chaitanya Bhardwaj" /><base href="messages.jsp" target="_blank" /><meta name="referrer" content="origin-when-cross-origin" /><link rel="icon" type="image/x-icon" href="resources/favicon.png" /><link rel="stylesheet" type="text/css" media="screen and (max-width: 700px)" href="stylesheets/messagessmall.css" /><link rel="stylesheet" type="text/css" media="screen and (min-width:701px)" href="stylesheets/messageslarge.css"><link rel="stylesheet" type="text/css" href="stylesheets/basicstyle.css"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
@@ -22,16 +22,18 @@
 		<div class="container" id="outer-container">
 			<ul id="message-list">
 				<%
-					Object o[]; String userList[];
-					if((o = request.getAttribute("new_messages")) == null) {
+					Object u, o[]; String userList[];
+					if((u = request.getAttribute("new_messages")) == null) {
 						userList = new String[1];
 						userList[0] = "No messages! It hurts, isn't it XD";
+						out.println("<li id='no-message'>" + userList[0] + "</li>");
 					}
 					else {
+						o = (Object[])u;
 						userList = Arrays.copyOf(o, o.length, String[].class);
+						for(int i = 0; i < userList.length; i++)
+							out.println("<li class='message-card'>" + userList[i] + "</li>");
 					}
-					for(int i = 0; i < userList.length; i++)
-						out.println("<li class='message-card'>" + userList[i] + "</li>");
 				%>
 			</ul>
 		</div>

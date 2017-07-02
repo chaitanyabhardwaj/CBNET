@@ -29,9 +29,11 @@
 	<main>
 		<div class="container" id="outer-container">
 			<div id="message-card" class="card">
-				<span class="counter-text">
-					<%= request.getAttribute("message-count") %>
-				</span>
+				<div class="counter">
+					<span class="counter-text">
+						<%= request.getAttribute("message-count") %>
+					</span>
+				</div>
 				<h3 class="card-title">Messages</h3>
 			</div>
 		</div>
