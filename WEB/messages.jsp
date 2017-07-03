@@ -12,6 +12,48 @@
 			$('#receiverID').val(receiverID);
 			$('#open-message-form').submit();
 		});
+		$('#compose-button').click(function() {
+			$('#compose-message-container').slideDown('slow');
+			$('#outer-container').css({'-webkit-filter':'grayscale(80%)','filter':'grayscale(80%)'});
+		});
+		$('#send-compose-button').click(function() {
+			var receiverID = '<%= request.getAttribute("username") %>';
+			receiverID = receiverID.trim();
+			var composeReceiverID = $('#compose-receiverID').val();
+			composeReceiverID = composeReceiverID.trim();
+			var msg = $('#compose-message-area').val();
+			msg = msg.trim();
+			if(composeReceiverID === "") {
+				printError("Please specify the ID to whom you wanna send your message.");
+				return;
+			}
+			if(msg === "") {
+				printError("The message is empty. Thodi toh sharam kar li hoti yaar!");
+				return;
+			}
+			var params = {
+				sender : receiverID,
+				receiver : compose-receiverID,
+				msg : msg
+			};
+			$.post("SendMessage", $.param(params), function(res) {
+				if(res == "SENT") {
+					printError("SENT");
+					$('#compose-message-container').slideUp('slow');
+					$('#outer-container').css({'-webkit-filter':'grayscale(0%)','filter':'grayscale(0%)'});
+				}
+			});
+		});
+
+		function printError(msg) {
+			$('#error-container').html(msg);
+			$('#error-container').fadeIn('slow');
+			var timer = setInterval(function() {
+				$('#error-container').fadeOut('slow');
+				clearInterval(timer);
+			},5000);
+		}
+
 	});
 </script>
 </head><body>
@@ -19,7 +61,18 @@
 		<h1>CBNET</h1>
 	</header>
 	<main>
+		<div id="error-container"></div>
+		<div class="container" id="compose-message-container">
+			<textarea id="compose-message-area">
+				Hey there!
+			</textarea>
+			<input type="text" name="compose-receiverID" id="compose-receiverID" placeholder="Send To?">
+			<button type="button" id="send-compose-button"><img src="resources/send-message.png" alt="SEND" id="send-button-img"></button>
+		</div>
 		<div class="container" id="outer-container">
+			<div class="container" id="compose-message">
+				<button id="compose-button" type="button">COMPOSE</button>
+			</div>
 			<ul id="message-list">
 				<%
 					Object u, o[]; String userList[];
@@ -38,8 +91,8 @@
 			</ul>
 		</div>
 		<form method="POST" action="MessageRead" id="open-message-form">
-			<input type="text" name="senderID" id="senderID" value="">
-			<input type="text" name="receiverID" id="receiverID" value="">
+			<input type="text" name="senderID" id="senderID" >
+			<input type="text" name="receiverID" id="receiverID" >
 		</form>
 	</main>
 	<footer>

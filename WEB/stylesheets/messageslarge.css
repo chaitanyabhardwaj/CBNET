@@ -1,3 +1,10 @@
+#error-container { display: none; position: absolute; top: 10%; width: 100%; height: auto; background-color: #f00; color: #fff; padding: 10px; text-align: center; border-radius: 25%; }
+#compose-message { padding: 10px; margin: auto; margin-top: 20px; margin-bottom: 20px; background-color: #ddd; width: 30%; }
+#compose-button { padding: 10px; background-color: #7af; color: #ddd; text-align: center; font-size: 150%; border: none; border-radius: 7px; width: 80%; margin: auto; }
+#compose-message-container { display: none; position: fixed; top: 35%; left: 35%; width: 300px; height: 300px; border-radius: 7px; -webkit-box-shadow: 0px 1px 3px #000; -moz-box-shadow: 0px 1px 3px #000; -ms-box-shadow: 0px 1px 3px #000; -o-box-shadow: 0px 1px 3px #000; box-shadow: 0px 1px 3px #000; padding: 10px; background-color: #ddd; }
+#compose-message-area { padding: 10px; background-color: #fff; border-radius: 7px; border: 1px solid #000; width: 250px; height: 200px; margin: auto; margin-bottom: 10px; color: #000; font-size: 120%; }
+#compose-receiverID { font-size: 120%; padding: 10px; background-color: #fff; border: 1px solid #000; border-radius: 7px; width: 150px; margin: auto; display: block; margin-bottom: 10px; text-align: center;  }
+#send-compose-button { padding: 10px; background-color: #7af; color: #ddd; text-align: center; font-size: 150%; border: none; border-radius: 7px; width: 60%; margin: auto; }
 #outer-container { width: 80%; margin: auto; background-color: #ddd; padding: 20px; margin-bottom: 50px; }
 #message-list { list-style-type: none; display: block; padding: 10px; }
 .message-card { background-color: #7af; -webkit-box-shadow: 0px 1px 3px #000; -moz-box-shadow: 0px 1px 3px #000; -ms-box-shadow: 0px 1px 3px #000; -o-box-shadow: 0px 1px 3px #000; box-shadow: 0px 1px 3px #000; padding: 20px; border-radius: 10px; cursor: pointer; width: 80%; display: block; margin: auto; margin-top: 10px; margin-bottom: 10px; height: auto; }

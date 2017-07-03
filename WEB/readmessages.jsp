@@ -6,6 +6,11 @@
 			var m = $('#msg').val();
 			m = m.trim();
 			if(m !== "") {
+				var param = {
+					msg : m,
+					sender : '<%= request.getAttribute("senderID") %>',
+					receiver : '<%= request.getAttribute("receiverID") %>'
+				};
 				$.post("SendMessage", $.param(params), function(res) {
 					if(res === "SENT") {
 						displayToast(res);
@@ -37,7 +42,7 @@
 			</div>
 			<div class="container" id="message-send">
 				<input type="text" name="msg" id="msg" placeholder="Type To Send">
-				<button type="button" id="send-button">Send</button>
+				<button type="button" id="send-button"><img src="resources/send-message.png" alt="SEND" id="send-button-img"></button>
 				<div id="toast-container">SENT</div>
 			</div>
 		</div>
