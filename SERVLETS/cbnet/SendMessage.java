@@ -16,12 +16,12 @@ public class SendMessage extends HttpServlet{
         try {
             manager.writeMessage(FileManager.MESSAGE_SEND, message, senderID, receiverID);
             manager.writeMessage(FileManager.MESSAGE_RECEIVE, message, senderID, receiverID);
-            PrintWriter pw = new PrintWriter(res.getOutputStream());
-            pw.println("SENT");
         }
         catch(UnknownTypeException ex) {
             ex.printStackTrace();
         }
+        PrintWriter pw = new PrintWriter(res.getOutputStream());
+        pw.println("SENT");
     }
 
 }

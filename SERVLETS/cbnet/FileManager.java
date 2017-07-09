@@ -15,16 +15,12 @@ public class FileManager {
         File folder,file,counter;
         switch (type) {
             case MESSAGE_SEND:
-                folder = new File(PATH +"messages/"+ senderID +"/sent/"+ receiverID +"/");
-                if(!folder.exists())
-                    folder.mkdir();
+                folder = makeDir(PATH +"messages/"+ senderID +"/sent/"+ receiverID +"/");
                 file = new File(folder,"messages.txt");
                 write(file,msg);
                 break;
             case MESSAGE_RECEIVE:
-                folder = new File(PATH +"messages/"+ receiverID +"/received/"+ senderID +"/");
-                if(!folder.exists())
-                    folder.mkdir();
+                folder = makeDir(PATH +"messages/"+ receiverID +"/received/"+ senderID +"/");
                 file = new File(folder,"messages_new.txt");
                 counter = new File(folder,"count_messages.txt");
                 write(file,msg);
@@ -155,10 +151,27 @@ public class FileManager {
         clear(file);
     }
     
+    public File makeDir(String path)throws IOException {
+        String parts[] = path.split("/");
+        parts[0] = "/" + parts[0];
+        File d = null;
+        String p ="";
+        for(String pname : parts) {
+            p = p + pname + "/";
+            d = new File(p);
+            if(!d.exists())
+                d.mkdir();
+        }
+        return d;
+    }
+    
+    public File makeDir(File folder)throws IOException {
+        String path = folder.getAbsolutePath();
+        return makeDir(path);
+    }
+    
     public int createUser(String userID, String passwd)throws IOException {
-        File folder = new File(PATH + "users/");
-        if(!folder.exists())
-            folder.mkdir();
+        File folder = makeDir(PATH + "users/");
         File file = new File(folder,userID +".txt");
         if(file.exists()) {
             log("User Event : Logged In. UserID : " + userID);
@@ -175,9 +188,13 @@ public class FileManager {
     }
     
     private void log(String str) {
-        File folder = new File(PATH + "logs/");
-        if(!folder.exists())
-            folder.mkdir();
+        File folder = null;
+        try {
+            folder = makeDir(PATH + "logs/");
+        }
+        catch(IOException ex) {
+            ex.printStackTrace();
+        }
         File file = new File(folder,"log.txt");
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         str = df.format(new Date()) + " - " + str;

@@ -2,26 +2,24 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
 <script>
 	$(document).ready(function() {
-		$('#send-button').class(function() {
+		$('#send-button').click(function() {
 			var m = $('#msg').val();
 			m = m.trim();
-			if(m !== "") {
-				var param = {
+			if(m != "") {
+				var params = {
 					msg : m,
 					sender : '<%= request.getAttribute("senderID") %>',
 					receiver : '<%= request.getAttribute("receiverID") %>'
 				};
 				$.post("SendMessage", $.param(params), function(res) {
-					if(res === "SENT") {
-						displayToast(res);
-						$('#msg').val("");
-					}
+					displayToast("SENT");
+					$('#msg').val("");
 				});
 			}
 		});
 
-		function displayToast(msg) {
-			$('#toast-container').html(msg);
+		function displayToast(msgs) {
+			$('#toast-container').html(msgs);
 			$('#toast-container').fadeIn('slow');
 			var timer = setInterval(function() {
 				$('#toast-container').fadeOut('slow');
@@ -42,8 +40,8 @@
 			</div>
 			<div class="container" id="message-send">
 				<input type="text" name="msg" id="msg" placeholder="Type To Send">
-				<button type="button" id="send-button"><img src="resources/send-message.png" alt="SEND" id="send-button-img"></button>
-				<div id="toast-container">SENT</div>
+				<button type="button" id="send-button">SEND</button>
+				<div id="toast-container"></div>
 			</div>
 		</div>
 	</main>

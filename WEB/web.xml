@@ -1,0 +1,40 @@
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+
+	<servlet>
+		<servlet-name>RegisteredS</servlet-name>
+		<servlet-class>cbnet.Registered</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>SendMessageS</servlet-name>
+		<servlet-class>cbnet.SendMessage</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>MyMessagesS</servlet-name>
+		<servlet-class>cbnet.MyMessages</servlet-class>
+	</servlet>
+	<servlet>
+		<servlet-name>MessageReadS</servlet-name>
+		<servlet-class>cbnet.MessageRead</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>RegisteredS</servlet-name>
+		<url-pattern>/Registered</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MyMessagesS</servlet-name>
+		<url-pattern>/MyMessages</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>MessageReadS</servlet-name>
+		<url-pattern>/MessageRead</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>SendMessageS</servlet-name>
+		<url-pattern>/SendMessage</url-pattern>
+	</servlet-mapping>
+
+</web-app>

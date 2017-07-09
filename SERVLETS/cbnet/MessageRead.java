@@ -18,8 +18,8 @@ public class MessageRead extends HttpServlet{
                 message = "";
         }
         message = message.trim();
-        req.setAttribute("senderID", sender);
-        req.setAttribute("receiverID",receiver);
+        req.setAttribute("senderID", receiver);
+        req.setAttribute("receiverID",sender);
         req.setAttribute("message", message);
         RequestDispatcher view;
         if(message.equals(""))

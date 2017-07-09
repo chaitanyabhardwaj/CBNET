@@ -5,43 +5,43 @@
 	$(document).ready(function() {
 		$('.message-card').click(function() {
 			var senderID = $(this).html();
-			senderID = userID.trim();
+			senderID = senderID.trim();
 			var receiverID = '<%= request.getAttribute("username") %>';
 			receiverID = receiverID.trim();
 			$('#senderID').val(senderID)
 			$('#receiverID').val(receiverID);
 			$('#open-message-form').submit();
 		});
+
 		$('#compose-button').click(function() {
 			$('#compose-message-container').slideDown('slow');
-			$('#outer-container').css({'-webkit-filter':'grayscale(80%)','filter':'grayscale(80%)'});
+			$('#outer-container, header, footer').addClass('gray-scaled');
 		});
+
 		$('#send-compose-button').click(function() {
 			var receiverID = '<%= request.getAttribute("username") %>';
 			receiverID = receiverID.trim();
 			var composeReceiverID = $('#compose-receiverID').val();
 			composeReceiverID = composeReceiverID.trim();
-			var msg = $('#compose-message-area').val();
-			msg = msg.trim();
+			var msgs = $('#compose-message-area').val();
+			msgs = msgs.trim();
 			if(composeReceiverID === "") {
 				printError("Please specify the ID to whom you wanna send your message.");
 				return;
 			}
-			if(msg === "") {
+			if(msgs === "") {
 				printError("The message is empty. Thodi toh sharam kar li hoti yaar!");
 				return;
 			}
 			var params = {
 				sender : receiverID,
-				receiver : compose-receiverID,
-				msg : msg
+				receiver : composeReceiverID,
+				msg : msgs
 			};
-			$.post("SendMessage", $.param(params), function(res) {
-				if(res == "SENT") {
-					printError("SENT");
-					$('#compose-message-container').slideUp('slow');
-					$('#outer-container').css({'-webkit-filter':'grayscale(0%)','filter':'grayscale(0%)'});
-				}
+			$.post("SendMessage", $.param(params), function(response) {
+				$('#compose-message-container').slideUp('slow');
+				$('#outer-container, header, footer').removeClass('gray-scaled');
+				printError("SENT");
 			});
 		});
 
@@ -63,11 +63,9 @@
 	<main>
 		<div id="error-container"></div>
 		<div class="container" id="compose-message-container">
-			<textarea id="compose-message-area">
-				Hey there!
-			</textarea>
+			<input type="text" name="compose-message-area" id="compose-message-area" placeholder="Type Message Here!">
 			<input type="text" name="compose-receiverID" id="compose-receiverID" placeholder="Send To?">
-			<button type="button" id="send-compose-button"><img src="resources/send-message.png" alt="SEND" id="send-button-img"></button>
+			<button type="button" id="send-compose-button">SEND</button>
 		</div>
 		<div class="container" id="outer-container">
 			<div class="container" id="compose-message">
@@ -90,7 +88,7 @@
 				%>
 			</ul>
 		</div>
-		<form method="POST" action="MessageRead" id="open-message-form">
+		<form method="POST" action="MessageRead" id="open-message-form" target="_self">
 			<input type="text" name="senderID" id="senderID" >
 			<input type="text" name="receiverID" id="receiverID" >
 		</form>
